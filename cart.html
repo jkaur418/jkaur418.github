@@ -1,0 +1,254 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Cart</title>
+  <style>
+    /* [Your original styles remain unchanged] */
+    body {
+      font-family: sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #fff;
+      box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .navbar .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .navbar nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .cart-container {
+      display: flex;
+      max-width: 1200px;
+      width: 100%;
+      gap: 40px;
+      margin: 40px auto;
+      padding: 0 40px;
+      flex: 1;
+    }
+
+    .cart-items {
+      flex: 3;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    .cart-item img {
+      width: 80px;
+      margin-right: 20px;
+      border-radius: 6px;
+    }
+
+    .cart-info {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    .cart-info div {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart-item h3 {
+      margin: 0 0 5px 0;
+    }
+
+    .remove-btn {
+      background-color: #ff5f5f;
+      border: none;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.2s ease;
+    }
+
+    .remove-btn:hover {
+      background-color: #e04848;
+    }
+
+    .summary {
+      flex: 1;
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      height: fit-content;
+    }
+
+    .summary h2 {
+      margin-top: 0;
+    }
+
+    .total {
+      font-size: 1.2rem;
+      margin: 20px 0;
+    }
+
+    .checkout-btn {
+      display: inline-block;
+      background-color: #d4af37;
+      color: white;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-align: center;
+      transition: background-color 0.2s ease;
+      margin-bottom: 10px;
+    }
+
+    .checkout-btn:hover {
+      background-color: #b38e2d;
+    }
+
+    .continue-btn {
+      display: inline-block;
+      background-color: #ccc;
+      color: #333;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .continue-btn:hover {
+      background-color: #bbb;
+    }
+
+    .footer {
+      background-color: #fff;
+      text-align: center;
+      padding: 30px 20px;
+      border-top: 1px solid #eee;
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .footer h4 {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo">JewelryCo</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Cart -->
+  <div class="cart-container">
+    <div class="cart-items" id="cartItems"></div>
+
+    <div class="summary">
+      <h2>Your Total</h2>
+      <p class="total" id="cartTotal">$0.00</p>
+      <a class="checkout-btn" href="checkout.html">Continue to Checkout</a>
+      <a class="continue-btn" href="products.html">Continue Shopping</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <h4>Shipping & Info</h4>
+    <p>🌍 Worldwide shipping available</p>
+    <p>© 2025 Spark&Stone™. All rights reserved.</p>
+    <p>📍 153 Gold Street, Los Angeles, CA</p>
+    <p>📞 (604) 278-2000</p>
+    <p>✉️ contact@spark&stone.com</p>
+  </footer>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartItemsContainer = document.getElementById("cartItems");
+    const cartTotalDisplay = document.getElementById("cartTotal");
+
+    function renderCart() {
+      cartItemsContainer.innerHTML = "";
+
+      if (cart.length === 0) {
+        cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
+        cartTotalDisplay.textContent = "$0.00";
+        return;
+      }
+
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        const price = parseFloat(item.price.replace('$', '')) || 0;
+        total += price;
+
+        const div = document.createElement("div");
+        div.className = "cart-item";
+        div.innerHTML = `
+          <div class="cart-info">
+            <img src="${item.image}" alt="${item.name}">
+            <div>
+              <h3>${item.name}</h3>
+              <p>${item.price}</p>
+            </div>
+          </div>
+          <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+        `;
+        cartItemsContainer.appendChild(div);
+      });
+
+      cartTotalDisplay.textContent = "$" + total.toFixed(2);
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>

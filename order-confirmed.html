@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmed - Spark&Stone</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      margin: 0;
+      background-color: #f9f9f9;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #fff;
+      box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .order-container {
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .order-container h2 {
+      margin-bottom: 20px;
+    }
+
+    .order-container p {
+      font-size: 1.2rem;
+      color: #555;
+    }
+
+    .btn {
+      padding: 15px 30px;
+      background-color: #ffcc00;
+      color: white;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #e6b800;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">Spark&Stone</div>
+  </header>
+
+  <div class="order-container">
+    <h2>Order Confirmed</h2>
+    <p>Your order has been successfully placed.</p>
+    <p>Order Number: <strong id="order-number"></strong></p>
+    <button class="btn" onclick="window.location.href='index.html'">Return to Home</button>
+  </div>
+
+  <script>
+    // Get the order number from URL query parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderNumber = urlParams.get('order');
+    document.getElementById('order-number').textContent = orderNumber;
+  </script>
+
+</body>
+</html>
+
+
+
+
+

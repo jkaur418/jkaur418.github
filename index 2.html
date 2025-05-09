@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spark&Stone</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      color: #333;
+      background-color: #f9f9f9;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #fff;
+      box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .navbar nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    .navbar nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    } 
+
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(75%);
+    }
+
+    .hero-text {
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      transform: translateY(-50%);
+      color: white;
+    }
+
+    .hero-text h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      padding: 12px 30px;
+      background-color: #d4af37;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #b38e2d;
+    }
+
+    .products-section {
+      padding: 60px 40px;
+      text-align: center;
+    }
+
+    .products-section h2 {
+      font-size: 2rem;
+      margin-bottom: 40px;
+    }
+
+    .products-grid {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .product-card {
+      width: 250px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      background-color: #fff;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .product-card h3 {
+      margin: 15px;
+      font-size: 1.2rem;
+    }
+
+    .footer {
+      background-color: #fff;
+      padding: 40px;
+      margin-top: 60px;
+      text-align: center;
+      font-size: 0.95rem;
+      color: #666;
+      border-top: 1px solid #ddd;
+    }
+
+    .footer h4 {
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .footer p {
+      margin: 5px 0;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+      }
+
+      .navbar nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+
+      .hero-text p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">Spark&Stone</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <img src="https://m.media-amazon.com/images/S/aplus-media-library-service-media/94c677ed-531c-4253-ace0-fdf7479066d0.__CR0,0,600,450_PT0_SX600_V1___.png" alt="Hero Jewelry Banner" class="hero-img" />
+    <div class="hero-text">
+      <h1>Elegant. Timeless. Yours.</h1>
+      <p>Non-tarnish gold jewelry made for every moment.</p>
+      <a href="products.html" class="btn">Shop Now</a>
+    </div>
+  </section>
+
+  <section class="products-section">
+    <h2>Explore Our Collection</h2>
+    <div class="products-grid">
+      <a href="earrings.html" class="product-card">
+        <img src="https://i.pinimg.com/736x/75/7b/39/757b39707002b503160a352908135431.jpg" alt="Earrings">
+        <h3>Earrings</h3>
+      </a>
+      <a href="necklaces.html" class="product-card">
+        <img src="https://www.maisonbirks.com/dw/image/v2/BJBZ_PRD/on/demandware.static/-/Sites-master-birks/default/dw1fc202b9/images/brands/Bijoux%20Birks/FY2025/Rock%20&%20Pearl/450018781970-RockPearl-Necklace.jpg?sw=1280" alt="Necklaces">
+        <h3>Necklaces</h3>
+      </a>
+      <a href="rings.html" class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9M5ErD7u2w5x9VjgnLebf96-49Ufam9ux0A&s" alt="Rings">
+        <h3>Rings</h3>
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <h4>Shipping & Info</h4>
+    <p>🌍 Worldwide shipping available</p>
+    <p>© 2025 Spark&Stone™. All rights reserved.</p>
+    <p>📍 153 Gold Street, Los Angeles, CA</p>
+    <p>📞 (604) 278-2000</p>
+    <p>✉️ contact@jewelryco.com</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Spark&Stone</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      margin: 0;
+      background-color: #f9f9f9;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #fff;
+      box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .form-container {
+      padding: 40px;
+      background-color: white;
+      max-width: 600px;
+      margin: 50px auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      background-color: #ffcc00;
+      color: white;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #e6b800;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">Spark&Stone</div>
+  </header>
+
+  <div class="form-container">
+    <h2>Checkout</h2>
+    <form id="checkout-form">
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" required />
+      </div>
+      <!-- Address -->
+      <div class="form-group">
+        <label for="address">Shipping Address</label>
+        <textarea id="address" required></textarea>
+      </div>
+      <!-- Card Info -->
+      <div class="form-group">
+        <label for="card-number">Card Number</label>
+        <input type="text" id="card-number" required />
+      </div>
+      <div class="form-group">
+        <label for="card-expiry">Expiry Date</label>
+        <input type="month" id="card-expiry" required />
+      </div>
+      <div class="form-group">
+        <label for="card-cvc">CVC</label>
+        <input type="text" id="card-cvc" required />
+      </div>
+      <!-- Submit Button -->
+      <button type="button" class="btn" onclick="submitCheckout()">Done</button>
+    </form>
+  </div>
+
+  <script>
+    function submitCheckout() {
+      // Gather form data
+      const email = document.getElementById('email').value;
+      const address = document.getElementById('address').value;
+      const cardNumber = document.getElementById('card-number').value;
+      const cardExpiry = document.getElementById('card-expiry').value;
+      const cardCvc = document.getElementById('card-cvc').value;
+
+      // Validate the form (simple validation)
+      if (!email || !address || !cardNumber || !cardExpiry || !cardCvc) {
+        alert('Please fill in all the fields.');
+        return;
+      }
+
+      // Generate a random order number (6 digits)
+      const orderNumber = Math.floor(Math.random() * 1000000);
+
+      // Redirect to Order Confirmation Page with the generated order number
+      window.location.href = `order-confirmed.html?order=${orderNumber}`;
+    }
+  </script>
+
+</body>
+</html>
+
+
+
+
+      
